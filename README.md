@@ -9,6 +9,8 @@ This research project investigates the intersection of Dynamical Systems Theory 
 
 - Introduction
 
+- How It Works
+
 - Theoretical Foundation
 
 - Algorithm & Implementation
@@ -28,6 +30,23 @@ In many real-world complex systems—such as cardiac dynamics (ECG) or atmospher
 **Efficient Readout Training:** Unlike standard RNNs, RC only requires training a linear output layer (the "readout"), significantly reducing computational costs.
 
 **Acknowledging Training Difficulties:** While the readout training is efficient, it is important to note that the internal reservoir still faces the fundamental "Difficulty of Learning" chaotic dynamics. As indicated by Mikhaeil et al. [5], standard activation functions ($\tanh$, ReLU, or even Identity) do not inherently solve the gradient vanishing or exploding problems when dealing with the positive Lyapunov exponents of chaotic orbits. Our framework addresses this via specialized stabilization techniques.
+
+## How It Works
+
+The Reservoir Computing architecture (specifically the Echo State Network) consists of a fixed, high-dimensional dynamical reservoir and a trainable linear readout.
+
+1. Reservoir State Update (Non-Trainable)
+
+The internal state $\mathbf{x}_t$ of the reservoir evolves according to a nonlinear, leaky-integrated recurrence relation. Unlike traditional RNNs, the matrices $\mathbf{A}$ and $\mathbf{C}$ are fixed and not updated via gradient descent:
+
+$$\mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)$$
+
+2. Linear Readout (Trainable)
+
+The prediction $\mathbf{y}_t$ is computed by a linear combination of the reservoir states. This is the only part of the system that is trained:
+
+$$\mathbf{y}_t = \mathbf{W}_{out} [\mathbf{x}_t; \mathbf{u}_t]$$
+
 
 ## Theoretical Foundation
 
