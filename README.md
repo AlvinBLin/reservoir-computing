@@ -1,52 +1,51 @@
 <h1 align="center">Reservoir Computing for Chaotic Dynamics</h1>
-<div align="center"><i>A framework for reconstructing and forecasting complex dynamical systems via Takens’ Embedding and Echo State Networks.</i></div>
 
 
-
-
+<div align="center"><i>A framework for reconstructing and forecasting complex dynamical systems via Takens’ Embedding and Echo State Networks.</i></div> 
+<br>
 This research project investigates the intersection of Dynamical Systems Theory and Reservoir Computing (RC). It demonstrates how high-dimensional recurrent networks can "unfold" and forecast chaotic attractors from limited scalar observations by leveraging the principle of Generalized Synchronization.
 
-Contents
+## Contents
 
-Introduction
+- Introduction
 
-Theoretical Foundation
+- Theoretical Foundation
 
-Algorithm & Implementation
+- Algorithm & Implementation
 
-References
+- References
 
-Introduction
+## Introduction
 
 In many real-world complex systems—such as cardiac dynamics (ECG) or atmospheric flow—we often only have access to a single observed variable (a scalar time series). However, the underlying physical system is high-dimensional and governed by unknown, coupled nonlinear equations. The challenge lies in reconstructing the "hidden" state space to perform accurate long-term forecasting.
 
-:mag: Why use Reservoir Computing?
+### Why use Reservoir Computing?
 
-Tracking the Attractor: RC acts as a nonlinear observer, capable of reconstructing the full phase-space dynamics even when most system variables are unobserved.
+**Tracking the Attractor:** RC acts as a nonlinear observer, capable of reconstructing the full phase-space dynamics even when most system variables are unobserved.
 
-Dimensionality Reduction: It provides a robust framework for mapping low-dimensional observations into a high-dimensional feature space.
+**Dimensionality Reduction:** It provides a robust framework for mapping low-dimensional observations into a high-dimensional feature space.
 
-Efficient Readout Training: Unlike standard RNNs, RC only requires training a linear output layer (the "readout"), significantly reducing computational costs.
+**Efficient Readout Training:** Unlike standard RNNs, RC only requires training a linear output layer (the "readout"), significantly reducing computational costs.
 
-Acknowledging Training Difficulties: While the readout training is efficient, it is important to note that the internal reservoir still faces the fundamental "Difficulty of Learning" chaotic dynamics. As indicated by Mikhaeil et al. [5], standard activation functions ($\tanh$, ReLU, or even Identity) do not inherently solve the gradient vanishing or exploding problems when dealing with the positive Lyapunov exponents of chaotic orbits. Our framework addresses this via specialized stabilization techniques.
+**Acknowledging Training Difficulties:** While the readout training is efficient, it is important to note that the internal reservoir still faces the fundamental "Difficulty of Learning" chaotic dynamics. As indicated by Mikhaeil et al. [5], standard activation functions ($\tanh$, ReLU, or even Identity) do not inherently solve the gradient vanishing or exploding problems when dealing with the positive Lyapunov exponents of chaotic orbits. Our framework addresses this via specialized stabilization techniques.
 
-Theoretical Foundation
+## Theoretical Foundation
 
 The success of this approach is grounded in the topological properties of chaotic systems.
 
-Takens’ Embedding & Generalized Synchronization
+### Takens’ Embedding & Generalized Synchronization
 
 Following the work of Grigoryeva et al. [1], we treat the reservoir as a dynamical system that achieves Generalized Synchronization with the input signal. According to Takens’ Embedding Theorem, a sufficient number of delayed observations can reconstruct a space that is topologically equivalent to the original system.
 
-Embedding vs. Immersion
+### Embedding vs. Immersion
 
 A critical distinction in this project is the pursuit of a true Embedding rather than a simple Immersion:
 
-Immersion: A smooth mapping where the image can self-intersect, potentially leading to non-deterministic states where the same "reconstructed" point leads to different futures.
+- Immersion: A smooth mapping where the image can self-intersect, potentially leading to non-deterministic states where the same "reconstructed" point leads to different futures.
 
-Embedding: A one-to-one (injective) mapping that preserves the topology. By ensuring our reservoir dimension satisfies the requirements found via the Cao Method [4], we ensure a unique mapping from the reservoir state to the physical attractor, which is a prerequisite for stable forecasting.
+- Embedding: A one-to-one (injective) mapping that preserves the topology. By ensuring our reservoir dimension satisfies the requirements found via the Cao Method [4], we ensure a unique mapping from the reservoir state to the physical attractor, which is a prerequisite for stable forecasting.
 
-Algorithm
+### Algorithm
 
 The project is divided into three functional modules:
 
@@ -62,7 +61,7 @@ Based on Platt et al. [2], this module implements localization for high-dimensio
 
 To address the gradient issues identified by Mikhaeil et al. [5], we implement Sparse Teacher Forcing. This technique "nudges" the reservoir state back to the ground truth at optimal intervals, allowing the network to learn chaotic orbits without numerical divergence.
 
-References
+## References
 
 [1] Grigoryeva, L., & Ortega, J. P. "Learning strange attractors with reservoir systems." Annals of Applied Probability, 2021.
 
