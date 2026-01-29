@@ -40,7 +40,7 @@ RC uses a fixed dynamical reservoir and a trainable linear readout.
     where $\mathbf{A}$ (reservoir) and $\mathbf{C}$ (input) are fixed random matrices, and $\alpha$ is the leaking rate.
 
 
-3. Linear Readout (Trainable)
+2. Linear Readout (Trainable)
 
     The prediction $\mathbf{Y_t} = \mathbf{W}_{out} \mathbf{x}_t$ is solved via Ridge Regression:
 
