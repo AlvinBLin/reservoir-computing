@@ -68,22 +68,28 @@ While Grigoryeva [1] proved embeddings for linear reservoirs, the non-linear for
 
 ## Algorithm
 
-1. Phase Space Profiling (Cao_Method.py): Determines $d_{min}$ to size the reservoir correctly.
+1. Data Preparation (Preprocessing.py)
 
-2. Localized ESNs (Platt_ESN.py): Implements parallel reservoirs for high-dimensional spatiotemporal chaos.
+    Handles normalization of scalar signals and training/testing set generation. This module ensures input data is scaled appropriately for the reservoir's $\tanh$ activation range.
 
-3. Sparse Teacher Forcing (Stabilizer.py): "Nudges" the reservoir toward ground truth to stabilize chaotic orbit learning [5].
+2. Echo State Solver (ESN_Core.py)
+
+    The core implementation of the reservoir and the Ridge Regression solver. It constructs the high-dimensional state space and computes the optimal $\mathbf{W}_{out}$ using the closed-form solution.
+
+3. Multi-step Forecaster (Forecaster.py)
+
+    Implements the autonomous prediction loop. Once trained, the model enters a recursive mode where its own output $\mathbf{\hat{y}}_t$ is fed back as the next input $\mathbf{u}_{t+1}$, enabling long-term forecasting without external data.
 
 ## References
 
-[1] Grigoryeva & Ortega. Annals of Applied Probability, 2021.
+[1] Grigoryeva, L., & Ortega, J.-P. (2021). "Learning strange attractors with reservoir systems." The Annals of Applied Probability, 31(1), 106-127.
 
-[2] Platt et al. Chaos, 2022.
+[2] Platt, J. A., Penny, S. G., Hunt, B. R., & Kalnay, E. (2022). "A systematic exploration of reservoir computing for forecasting complex spatiotemporal dynamics." Chaos: An Interdisciplinary Journal of Nonlinear Science, 32(1).
 
-[3] Lukoševičius. A practical guide to ESNs, 2012.
+[3] Lukoševičius, M. (2012). "A practical guide to applying echo state networks." In Neural Networks: Tricks of the Trade (pp. 659-686). Springer, Berlin, Heidelberg.
 
-[4] Cao, L. Physica D, 1997.
+[4] Cao, L. (1997). "Practical method for determining the minimum embedding dimension of a scalar time series." Physica D: Nonlinear Phenomena, 110(1-2), 43-50.
 
-[5] Mikhaeil et al. NeurIPS, 2022.
+[5] Mikhaeil, M., Knüsel, R., Monfared, Z., & Durstewitz, D. (2022). "On the difficulty of learning chaotic dynamics with RNNs." Advances in Neural Information Processing Systems (NeurIPS), 35, 11297-11310.
 
-[6] Hart et al. Neural Networks, 2020.
+[6] Hart, A., Hook, J., & Dawes, J. (2020). "Embedding and approximation theorems for echo state networks." Neural Networks, 128, 234-247.
