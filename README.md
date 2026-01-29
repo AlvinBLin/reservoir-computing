@@ -35,9 +35,7 @@ RC uses a fixed dynamical reservoir and a trainable linear readout.
 
     The reservoir state $\mathbf{x}_t$ evolves via a non-trainable recurrence relation:
 
-    $$
-   \mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)
-   $$
+    $$ \mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t) $$
 
     where $\mathbf{A}$ (reservoir) and $\mathbf{C}$ (input) are fixed random matrices, and $\alpha$ is the leaking rate.
 
