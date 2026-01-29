@@ -42,11 +42,11 @@ RC uses a fixed dynamical reservoir and a trainable linear readout.
 
 3. Linear Readout (Trainable)
 
-   The prediction $\mathbf{Y_t} = \mathbf{W}_{out} \mathbf{x}_t$ is solved via Ridge Regression:
+    The prediction $\mathbf{Y_t} = \mathbf{W}_{out} \mathbf{x}_t$ is solved via Ridge Regression:
 
-$$\mathbf{W}_{out} = \mathbf{Y}_{target} \mathbf{X}^T (\mathbf{X} \mathbf{X}^T + \beta \mathbf{I})^{-1}$$
+    $$\mathbf{W}_{out} = \mathbf{Y}_{target} \mathbf{X}^T (\mathbf{X} \mathbf{X}^T + \beta \mathbf{I})^{-1}$$
 
-   This closed-form solution ensures deterministic, efficient training without backpropagation.
+    This closed-form solution ensures deterministic, efficient training without backpropagation.
 
 ## Theoretical Foundation
 
