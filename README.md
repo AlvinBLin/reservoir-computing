@@ -25,7 +25,7 @@ Real-world systems (e.g., ECG or atmospheric flow) often provide only scalar tim
 
 - **Dimensionality:** Maps low-dimensional observations into a high-dimensional feature space.
 
-- **Gradient-Free Training:** Avoids the "Difficulty of Learning" chaos identified by Mikhaeil et al. [5] by only training a linear readout, bypassing the vanishing/exploding gradient problems inherent in BPTT.
+- **Gradient-Free Training:** Bypasses the vanishing/exploding gradient problems inherent in BPTT.
 
 ## How It Works
 
@@ -33,19 +33,22 @@ RC uses a fixed dynamical reservoir and a trainable linear readout.
 
 1. State Update (Fixed)
 
-The reservoir state $\mathbf{x}_t$ evolves via a non-trainable recurrence relation:
+    The reservoir state $\mathbf{x}_t$ evolves via a non-trainable recurrence relation:
 
-$$\mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)$$
+    $$
+   \mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)
+   $$
 
-where $\mathbf{A}$ (reservoir) and $\mathbf{C}$ (input) are fixed random matrices, and $\alpha$ is the leaking rate.
+    where $\mathbf{A}$ (reservoir) and $\mathbf{C}$ (input) are fixed random matrices, and $\alpha$ is the leaking rate.
 
-2. Linear Readout (Trainable)
 
-The prediction $\mathbf{Y_t} = \mathbf{W}_{out} \mathbf{x}_t$ is solved via Ridge Regression:
+3. Linear Readout (Trainable)
+
+   The prediction $\mathbf{Y_t} = \mathbf{W}_{out} \mathbf{x}_t$ is solved via Ridge Regression:
 
 $$\mathbf{W}_{out} = \mathbf{Y}_{target} \mathbf{X}^T (\mathbf{X} \mathbf{X}^T + \beta \mathbf{I})^{-1}$$
 
-This closed-form solution ensures deterministic, efficient training without backpropagation.
+   This closed-form solution ensures deterministic, efficient training without backpropagation.
 
 ## Theoretical Foundation
 
