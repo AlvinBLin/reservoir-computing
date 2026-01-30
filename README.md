@@ -3,18 +3,6 @@
 <br>
 This project investigates the intersection of Dynamical Systems Theory and Reservoir Computing (RC). We demonstrate how high-dimensional recurrent networks "unfold" chaotic attractors from scalar observations using Generalized Synchronization.
 
-## Contents
-
-- Introduction
-
-- How It Works
-
-- Theoretical Foundation
-
-- Algorithm & Implementation
-
-- References
-
 ## Introduction
 
 Real-world systems (e.g., ECG or atmospheric flow) often provide only scalar time series from high-dimensional, unknown nonlinear equations. The challenge is reconstructing the hidden state space for accurate forecasting.
@@ -72,7 +60,7 @@ the non-linear form (Platt [2]) is supported by Genericity Theorems (Hart et al.
 
 - Embedding: One-to-one (injective) mapping preserving topology, preventing self-intersections.
 
-## Algorithm
+## Algorithm for Prediction
 
 1. Data Preparation (Preprocessing.py)
 
