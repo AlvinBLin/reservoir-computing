@@ -54,7 +54,11 @@ RC uses a fixed dynamical reservoir and a trainable linear readout.
 
 ### From Linear Theory to Non-linear Embeddings
 
-While Grigoryeva [1] proved embeddings for linear reservoirs, the non-linear form (Platt [2]) is supported by Genericity Theorems (Hart et al. [6]). These establish that for a reservoir with the Echo State Property, the synchronization map is a diffeomorphism if:
+While Grigoryeva [1] proved embeddings for linear reservoirs, 
+
+$$\mathbf{x}_t = \mathbf{Ax}_{t-1}+\mathbf{C}\mathbf{u}_t$$
+
+the non-linear form (Platt [2]) is supported by Genericity Theorems (Hart et al. [6]). These establish that for a reservoir with the Echo State Property, the synchronization map is a diffeomorphism if:
 
 - Dimension: $N$ is sufficiently large (e.g., $N=20$ for Lorenz).
 
@@ -66,7 +70,7 @@ While Grigoryeva [1] proved embeddings for linear reservoirs, the non-linear for
 
 - Immersion: Smooth mapping that may self-intersect, leading to non-determinism.
 
-- Embedding: One-to-one (injective) mapping preserving topology. We use the Cao Method [4] to ensure the reservoir dimension $d_{min}$ prevents self-intersections.
+- Embedding: One-to-one (injective) mapping preserving topology, preventing self-intersections.
 
 ## Algorithm
 
