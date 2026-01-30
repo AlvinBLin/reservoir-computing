@@ -19,6 +19,8 @@ This project investigates the intersection of Dynamical Systems Theory and Reser
 
 Real-world systems (e.g., ECG or atmospheric flow) often provide only scalar time series from high-dimensional, unknown nonlinear equations. The challenge is reconstructing the hidden state space for accurate forecasting.
 
+![gif](https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif)
+
 ### Why Reservoir Computing?
 
 - **Attractor Tracking:** Acts as a nonlinear observer to reconstruct full phase-space dynamics.
