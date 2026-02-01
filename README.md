@@ -1,11 +1,12 @@
 <h1 align="center">Reservoir Computing for Chaotic Dynamics</h1>
-<div align="center"><i>Reconstructing and forecasting complex dynamical systems via Takens’ Embedding and Echo State Networks.</i></div>
+<div align="center"><i>Comparing Stochastic Echo State Networks and Deterministic NVAR Frameworks.</i></div>
 <br>
-This project investigates the intersection of Dynamical Systems Theory and Reservoir Computing (RC). We demonstrate how high-dimensional recurrent networks "unfold" chaotic attractors from scalar observations using Generalized Synchronization.
+
+This project investigates the application of Reservoir Computing (RC) in modeling nonlinear dynamical systems. We contrast the "Classic" stochastic approach (ESN) with the "Next-Gen" deterministic approach (NVAR) to demonstrate how each captures chaotic attractors for autonomous forecasting.
 
 ## Introduction
 
-Real-world systems (e.g., ECG or atmospheric flow) often provide only scalar time series from high-dimensional, unknown nonlinear equations. The challenge is reconstructing the hidden state space for accurate forecasting.
+Chaotic systems are characterised by their sensitivity to initial conditions. Reservoir Computing provides a computationally efficient alternative to traditional RNNs by mapping inputs into a high-dimensional feature space where the dynamics can be solved linearly.
 
 ![gif](https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif)
 
@@ -46,7 +47,7 @@ While Grigoryeva [1] proved embeddings for linear reservoirs,
 
 $$\mathbf{x}_t = \mathbf{Ax}_{t-1}+\mathbf{C}\mathbf{u}_t$$
 
-the non-linear form (Platt [2]) is supported by Genericity Theorems (Hart et al. [6]). These establish that for a reservoir with the Echo State Property, the synchronization map is a diffeomorphism if:
+the non-linear form (Platt [2]) is supported by Genericity Theorems (Hart et al. [6]). These establish that for a reservoir with the Echo State Property, the synchronisation map is a diffeomorphism if:
 
 - Dimension: $N$ is sufficiently large (e.g., $N=20$ for Lorenz).
 
