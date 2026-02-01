@@ -12,68 +12,57 @@ Chaotic systems are characterised by their sensitivity to initial conditions. Re
 
 ### Why Reservoir Computing?
 
-- **Attractor Tracking:** Acts as a nonlinear observer to reconstruct full phase-space dynamics.
+- **Efficient Readout Training:** Both paradigms use Ridge Regression, bypassing the gradient vanishing/exploding problems (BPTT) common in chaotic RNN training [5].
 
-- **Dimensionality:** Maps low-dimensional observations into a high-dimensional feature space.
-
-- **Gradient-Free Training:** Bypasses the vanishing/exploding gradient problems inherent in BPTT.
+- **Temporal Memory:** History is encoded either through internal hidden dynamics (ESN) or explicit time-delay embeddings (NVAR).
 
 ## How It Works
+The project implements two distinct architectures to "unfold" the system's state space:
 
-RC uses a fixed dynamical reservoir and a trainable linear readout.
+### Classic ESN (Stochastic)
 
-1. State Update (Fixed)
+Utilizes a fixed random reservoir. The state $\mathbf{x}_t$ evolves as a non-trainable recurrence:
 
-    The reservoir state $\mathbf{x}_t$ evolves via a non-trainable recurrence relation:
+$$\mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)$$
 
-    $$ \mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t) $$
+### Next-Gen RC (NVAR / Deterministic)
 
-    where $\mathbf{A}$ (reservoir) and $\mathbf{C}$ (input) are fixed random matrices, and $\alpha$ is the leaking rate.
+Eliminates the reservoir in favor of a feature vector $\mathbb{O}_t$ constructed from:
 
+- Linear Part: Current and time-shifted observations $[\mathbf{u_t,\ u_{t-k\cdot\text{d}t},\ u_{t-2k\cdot\text{d}t}} \dots]$.
 
-2. Linear Readout (Trainable)
-
-    The prediction $\mathbf{Y_t} = \mathbf{W}_{out} \mathbf{x}_t$ is solved via Ridge Regression:
-
-    $$\mathbf{W}_{out} = \mathbf{Y}_{target} \mathbf{X}^T (\mathbf{X} \mathbf{X}^T + \beta \mathbf{I})^{-1}$$
-
-    This closed-form solution ensures deterministic, efficient training without backpropagation.
+- Nonlinear Part: Unique polynomial combinations (monomials) of the linear terms.
 
 ## Theoretical Foundation
 
-### From Linear Theory to Non-linear Embeddings
+### Echo State Networks: GS & Embedding
 
-While Grigoryeva [1] proved embeddings for linear reservoirs, 
+The ESN relies on Generalized Synchronization (GS). For a reservoir to function as an observer, it must satisfy the Echo State Property (ESP). While Grigoryeva et al. [1] established the embedding properties for linear reservoirs, Hart et al. [6] serve as the critical bridge to the non-linear dynamics used in this project. Hart’s work proves that the synchronization map from the attractor manifold $M$ to the internal reservoir state $\mathbf{x} \in \mathbb{R}^N$ remains a diffeomorphism (an embedding) for non-linear, leaky-integrated recurrences. This theoretical extension ensures that the topology of the attractor is uniquely unfolded in the high-dimensional reservoir space, maintaining the one-to-one mapping necessary for deterministic, autonomous forecasting.
 
-$$\mathbf{x}_t = \mathbf{Ax}_{t-1}+\mathbf{C}\mathbf{u}_t$$
+### Next-Gen RC: Takens & Approximation
 
-the non-linear form (Platt [2]) is supported by Genericity Theorems (Hart et al. [6]). These establish that for a reservoir with the Echo State Property, the synchronisation map is a diffeomorphism if:
+The NVAR approach is grounded in Takens’ Embedding Theorem.
 
-- Dimension: $N$ is sufficiently large (e.g., $N=20$ for Lorenz).
+1. The Diffeomorphism: Let $M$ be the $d$-dimensional attractor manifold. Takens' theorem defines a map $\Phi: M \to \mathbb{R}^k$ such that $$\Phi(x) = (h(x), h(\psi^{-\tau}(x)), \dots, h(\psi^{-(k-1)\tau}(x)))$$. If $k > 2d$, $\Phi$ is an embedding (a diffeomorphism onto its image), providing the necessary coordinates to reconstruct the phase space.
 
-- Generic Coupling: $\mathbf{A}$ and $\mathbf{C}$ are chosen from non-singular distributions.
+2. Function Approximation: Once the state space is reconstructed in $\mathbb{R}^k$, NVAR uses the Universal Approximation Theorem (via polynomial expansion) to approximate the unknown nonlinear map $f: \mathbb{R}^k \to \mathbb{R}$ that governs the system's evolution. By expanding the $k$-dimensional delay vector into a $D$-dimensional polynomial feature space, NVAR solves the forecasting problem as a linear regression.
 
-- Stark’s Extension: Injective mapping remains generic even with $\tanh$ activations.
+## Implementation
+### 1. Classic ESN: 
+Path: `script\ESN.ipynb` 
 
-### Embedding vs. Immersion
+- Implementation of the stochastic reservoir approach [2]. It features a fixed random neural network that "echoes" input history to create a high-dimensional state space.
 
-- Immersion: Smooth mapping that may self-intersect, leading to non-determinism.
+### 2. Next Generation Reservoir Computing: 
+Path: `script\NextGen_RC.ipynb`
 
-- Embedding: One-to-one (injective) mapping preserving topology, preventing self-intersections.
+- Implementation of the Next-Generation Reservoir Computer (NVAR) based on Gauthier et al. [7]. This deterministic approach offers several key advantages:
 
-## Algorithm for Prediction
+- Efficiency: It is $33$ to $162$ times less computationally expensive than traditional RCs.
 
-1. Data Preparation (Preprocessing.py)
+- Data Savings: Requires extremely small training sets (as few as $400$ points) and minimal "warm-up" periods (as few as $2$ points).
 
-    Handles normalization of scalar signals and training/testing set generation. This module ensures input data is scaled appropriately for the reservoir's $\tanh$ activation range.
-
-2. Echo State Solver (ESN_Core.py)
-
-    The core implementation of the reservoir and the Ridge Regression solver. It constructs the high-dimensional state space and computes the optimal $\mathbf{W}_{out}$ using the closed-form solution.
-
-3. Multi-step Forecaster (Forecaster.py)
-
-    Implements the autonomous prediction loop. Once trained, the model enters a recursive mode where its own output $\mathbf{\hat{y}}_t$ is fed back as the next input $\mathbf{u}_{t+1}$, enabling long-term forecasting without external data.
+- Interpretability: Since it utilizes explicit polynomial basis functions rather than stochastic random networks, the resulting forecasting model is easier to analyze and relate to the underlying physical equations.
 
 ## References
 
