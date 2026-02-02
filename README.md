@@ -8,7 +8,9 @@ This project investigates the application of Reservoir Computing (RC) in modelin
 
 Chaotic systems are characterised by their sensitivity to initial conditions. Reservoir Computing provides a computationally efficient alternative to traditional RNNs by mapping inputs into a high-dimensional feature space where the dynamics can be solved linearly.
 
-![gif](https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif)
+<p align="center">
+<img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif" width="60%" />
+</p>
 
 ### Why Reservoir Computing?
 
@@ -64,7 +66,9 @@ Path: `script/NextGen_RC.ipynb`
 
 - **Interpretability:** Since it utilises explicit polynomial basis functions rather than stochastic random networks, the resulting forecasting model is easier to analyze and relate to the underlying physical equations.
 
-![image](https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz.png)
+<p align="center">
+<img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz.png" width="60%" />
+</p>
 
 ## References
 
