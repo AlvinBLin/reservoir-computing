@@ -77,3 +77,5 @@ Path: `script/NextGen_RC.ipynb`
 [5] Mikhaeil, M., Knüsel, R., Monfared, Z., & Durstewitz, D. (2022). "On the difficulty of learning chaotic dynamics with RNNs." Advances in Neural Information Processing Systems (NeurIPS), 35, 11297-11310.
 
 [6] Hart, A., Hook, J., & Dawes, J. (2020). "Embedding and approximation theorems for echo state networks." Neural Networks, 128, 234-247.
+
+[7] Gauthier, D. J., et al. (2021). "Next generation reservoir computing." Nature Communications, 12(1), 5564.
