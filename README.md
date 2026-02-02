@@ -21,7 +21,7 @@ The project implements two distinct architectures to "unfold" the system's state
 
 ### Classic ESN (Stochastic)
 
-Utilizes a fixed random reservoir. The state $\mathbf{x}_t$ evolves as a non-trainable recurrence:
+Utilises a fixed random reservoir. The state $\mathbf{x}_t$ evolves as a non-trainable recurrence:
 
 $$\mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)$$
 
@@ -29,23 +29,23 @@ $$\mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x
 
 Eliminates the reservoir in favor of a feature vector $\mathbb{O}_t$ constructed from:
 
-- Linear Part: Current and time-shifted observations $[\mathbf{u_t,\ u_{t-k\cdot\text{d}t},\ u_{t-2k\cdot\text{d}t}} \dots]$.
+- **Linear Part:** Current and time-shifted observations $[\mathbf{u_t,\ u_{t-k\cdot\text{d}t},\ u_{t-2k\cdot\text{d}t}} \dots]$.
 
-- Nonlinear Part: Unique polynomial combinations (monomials) of the linear terms.
+- **Nonlinear Part:** Unique polynomial combinations (monomials) of the linear terms.
 
 ## Theoretical Foundation
 
 ### Echo State Networks: GS & Embedding
 
-The ESN relies on Generalized Synchronization (GS). For a reservoir to function as an observer, it must satisfy the Echo State Property (ESP). While Grigoryeva et al. [1] established the embedding properties for linear reservoirs, Hart et al. [6] serve as the critical bridge to the non-linear dynamics used in this project. Hart’s work proves that the synchronization map from the attractor manifold $M$ to the internal reservoir state $\mathbf{x} \in \mathbb{R}^N$ remains a diffeomorphism (an embedding) for non-linear, leaky-integrated recurrences. This theoretical extension ensures that the topology of the attractor is uniquely unfolded in the high-dimensional reservoir space, maintaining the one-to-one mapping necessary for deterministic, autonomous forecasting.
+The ESN relies on Generalised Synchronisation (GS). For a reservoir to function as an observer, it must satisfy the Echo State Property (ESP). While Grigoryeva et al. [1] established the embedding properties for linear reservoirs, Hart et al. [6] serve as the critical bridge to the non-linear dynamics used in this project. Hart’s work proves that the synchronisation map from the attractor manifold $M$ to the internal reservoir state $\mathbf{x} \in \mathbb{R}^N$ remains a diffeomorphism (an embedding) for non-linear, leaky-integrated recurrences. This theoretical extension ensures that the topology of the attractor is uniquely unfolded in the high-dimensional reservoir space, maintaining the one-to-one mapping necessary for deterministic, autonomous forecasting.
 
 ### Next-Gen RC: Takens & Approximation
 
 The NVAR approach is grounded in Takens’ Embedding Theorem.
 
-1. The Diffeomorphism: Let $M$ be the $d$-dimensional attractor manifold. Takens' theorem defines a map $\Phi: M \to \mathbb{R}^k$ such that $$\Phi(x) = (h(x), h(\psi^{-\tau}(x)), \dots, h(\psi^{-(k-1)\tau}(x)))$$. If $k > 2d$, $\Phi$ is an embedding (a diffeomorphism onto its image), providing the necessary coordinates to reconstruct the phase space.
+1. **The Diffeomorphism:** Let $M$ be the $d$-dimensional attractor manifold. Takens' theorem defines a map $\Phi: M \to \mathbb{R}^k$ such that $$\Phi(x) = (h(x), h(\psi^{-\tau}(x)), \dots, h(\psi^{-(k-1)\tau}(x)))$$. If $k > 2d$, $\Phi$ is an embedding (a diffeomorphism onto its image), providing the necessary coordinates to reconstruct the phase space.
 
-2. Function Approximation: Once the state space is reconstructed in $\mathbb{R}^k$, NVAR uses the Universal Approximation Theorem (via polynomial expansion) to approximate the unknown nonlinear map $f: \mathbb{R}^k \to \mathbb{R}$ that governs the system's evolution. By expanding the $k$-dimensional delay vector into a $D$-dimensional polynomial feature space, NVAR solves the forecasting problem as a linear regression.
+2. **Function Approximation:** Once the state space is reconstructed in $\mathbb{R}^k$, NVAR uses the Universal Approximation Theorem (via polynomial expansion) to approximate the unknown nonlinear map $f: \mathbb{R}^k \to \mathbb{R}$ that governs the system's evolution. By expanding the $k$-dimensional delay vector into a $D$-dimensional polynomial feature space, NVAR solves the forecasting problem as a linear regression.
 
 ## Implementation
 ### 1. Classic ESN: 
@@ -58,11 +58,11 @@ Path: `script/NextGen_RC.ipynb`
 
 - Implementation of the Next-Generation Reservoir Computer (NVAR) based on Gauthier et al. [7]. This deterministic approach offers several key advantages:
 
-- Efficiency: It is $33$ to $162$ times less computationally expensive than traditional RCs.
+- **Efficiency:** It is $33$ to $162$ times less computationally expensive than traditional RCs.
 
-- Data Savings: Requires extremely small training sets (as few as $400$ points) and minimal "warm-up" periods (as few as $2$ points).
+- **Data Savings:** Requires extremely small training sets (as few as $400$ points) and minimal "warm-up" periods (as few as $2$ points).
 
-- Interpretability: Since it utilizes explicit polynomial basis functions rather than stochastic random networks, the resulting forecasting model is easier to analyze and relate to the underlying physical equations.
+- **Interpretability:** Since it utilises explicit polynomial basis functions rather than stochastic random networks, the resulting forecasting model is easier to analyze and relate to the underlying physical equations.
 
 ## References
 
