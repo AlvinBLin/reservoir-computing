@@ -49,12 +49,12 @@ The NVAR approach is grounded in Takens’ Embedding Theorem.
 
 ## Implementation
 ### 1. Classic ESN: 
-Path: `script\ESN.ipynb` 
+Path: `script/ESN.ipynb` 
 
 - Implementation of the stochastic reservoir approach [2]. It features a fixed random neural network that "echoes" input history to create a high-dimensional state space.
 
 ### 2. Next Generation Reservoir Computing: 
-Path: `script\NextGen_RC.ipynb`
+Path: `script/NextGen_RC.ipynb`
 
 - Implementation of the Next-Generation Reservoir Computer (NVAR) based on Gauthier et al. [7]. This deterministic approach offers several key advantages:
 
