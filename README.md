@@ -11,7 +11,7 @@ Chaotic systems are characterised by their sensitivity to initial conditions. Re
 <p align="center">
   <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif" width="60%" />
   <br>
-  Fig 1: Illustration of reservoir computing. Left: Lorenz attractor; right: constructed projected manifold;
+  Figure 1: Illustration of reservoir computing. Left: Lorenz attractor; right: constructed projected manifold;
   <br>
   deshed linkage: generalised synchronisation.
 </p>
@@ -59,6 +59,12 @@ Path: `script/ESN.ipynb`
 
 - Implementation of the stochastic reservoir approach [2]. It features a fixed random neural network that "echoes" input history to create a high-dimensional state space.
 
+<p align="center">
+  <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_esn.png" width="60%" alt="Figure 3: Forecasting Lorenz63 system using the NG-RC."/>
+  <br>
+  Figure 2: Forecasting Lorenz63 system using classic ESN.
+</p>
+
 ### 2. Next Generation Reservoir Computing: 
 Path: `script/NextGen_RC.ipynb`
 
@@ -71,7 +77,7 @@ Path: `script/NextGen_RC.ipynb`
 - **Interpretability:** Since it utilises explicit polynomial basis functions rather than stochastic random networks, the resulting forecasting model is easier to analyze and relate to the underlying physical equations.
 
 <p align="center">
-  <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz.png" width="60%" alt="Figure 3: Forecasting Lorenz63 system using the NG-RC."/>
+  <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_next_gen_rc.png" width="60%" alt="Figure 3: Forecasting Lorenz63 system using the NG-RC."/>
   <br>
   Figure 3: Forecasting Lorenz63 system using the NG-RC.
 </p>
