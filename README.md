@@ -64,6 +64,8 @@ Path: `script/NextGen_RC.ipynb`
 
 - **Interpretability:** Since it utilises explicit polynomial basis functions rather than stochastic random networks, the resulting forecasting model is easier to analyze and relate to the underlying physical equations.
 
+![image](https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz.png)
+
 ## References
 
 [1] Grigoryeva, L., & Ortega, J.-P. (2021). "Learning strange attractors with reservoir systems." The Annals of Applied Probability, 31(1), 106-127.
