@@ -45,6 +45,8 @@ Eliminates the reservoir in favor of a feature vector $\mathbb{O}_t$ constructed
 
 The ESN relies on Generalised Synchronisation (GS). For a reservoir to function as an observer, it must satisfy the Echo State Property (ESP). While Grigoryeva et al. [2] established the embedding properties for linear reservoirs, Hart et al. [3] serve as the critical bridge to the non-linear dynamics used in this project. Hart’s work proves that the synchronisation map from the attractor manifold $M$ to the internal reservoir state $\mathbf{x} \in \mathbb{R}^N$ remains a diffeomorphism (an embedding) for non-linear, leaky-integrated recurrences. This theoretical extension ensures that the topology of the attractor is uniquely unfolded in the high-dimensional reservoir space, maintaining the one-to-one mapping necessary for deterministic, autonomous forecasting.
 
+For more details, please follow the link: [Notes for *Learning strange attractors with reservoir systems*](https://hackmd.io/@SuperChang/rnn)
+
 ### Next-Gen RC: Takens & Approximation
 
 The NVAR approach is grounded in Takens’ Embedding Theorem.
