@@ -107,7 +107,7 @@ Path: `script/ESN.ipynb`
 <p align="center">
   <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_esn.png" width="60%" alt="Figure 3: Forecasting Lorenz63 system using the NG-RC."/>
   <br>
-  Figure 2: Forecasting Lorenz63 system using classic ESN ($dt = 0.01$).
+  Figure 3: Forecasting Lorenz63 system using classic ESN ($dt = 0.01$).
 </p>
 
 ### 2. Next Generation Reservoir Computing: 
@@ -124,7 +124,7 @@ Path: `script/NextGen_RC.ipynb`
 <p align="center">
   <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_next_gen_rc.png" width="60%" alt="Figure 3: Forecasting Lorenz63 system using the NG-RC."/>
   <br>
-  Figure 3: Forecasting Lorenz63 system using the NG-RC.
+  Figure 4: Forecasting Lorenz63 system using the NG-RC.
 </p>
 
 ## References
