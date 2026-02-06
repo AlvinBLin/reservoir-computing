@@ -27,21 +27,47 @@ Chaotic systems are characterised by their sensitivity to initial conditions. Re
 - **Temporal Memory:** History is encoded either through internal hidden dynamics (ESN) or explicit time-delay embeddings (NVAR).
 
 ## How It Works
-The project implements two distinct architectures to "unfold" the system's state space:
+The project implements two distinct architectures to "unfold" the system's state space, they have different structure for the networks.
 
-### Classic ESN (Stochastic)
+### Recurrance
+
+#### Classic ESN (Stochastic)
 
 Utilises a fixed random reservoir. The state $\mathbf{x}_t$ evolves as a non-trainable recurrence:
 
 $$\mathbf{x}_{t+1} = (1 - \alpha)\mathbf{x}_t + \alpha \tanh(\mathbf{A}\mathbf{x}_t + \mathbf{C}\mathbf{u}_t)$$
 
-### Next-Gen RC (NVAR / Deterministic)
+#### Next-Gen RC (NVAR / Deterministic)
 
 Eliminates the reservoir in favor of a feature vector $\mathbb{O}_t$ constructed from:
 
 - **Linear Part:** Current and time-shifted observations $[\mathbf{u_t,\ u_{t-k\cdot\text{d}t},\ u_{t-2k\cdot\text{d}t}} \dots]$.
 
 - **Nonlinear Part:** Unique polynomial combinations (monomials) of the linear terms.
+
+### Readout
+
+Both method share the smae idea about reading out the forecasting data from the networks. The readout method they use is simply a linear matrix $\mathbf{W}_{out}$, esatblished by solving a ridge regreesion (or so-called Tiknohov regulation), yielding the following form:
+
+#### ESN:
+
+$$\mathbf{W}_{out} = X^{\top}(X^{\top}X - \alpha I)^{-1},$$
+
+for which $X = [ \mathbf{x_t} ]_{t =1}^{T}$, $\mathbf{x_t}$ are the states for ESN; the forecast result will be
+
+$$
+\hat{\mathbf{u}}_{t+1} = \mathbf{W}_{out}\mathbf{x_{t}}
+$$
+
+#### NG-RC
+
+$$W_{out} = \mathbf{Y}\mathbb{O}^{\top}(\mathbb{O}^{\top}\mathbb{O} - \alpha I)^{-1},$$
+
+where $Y = [\mathbf{x_{t+1}}-\mathbf{x_t}]\_{t=1}^{T}$ and $\mathbb{O} = [\mathbb{O_t}]_{t=1}^T$; the forecasting result will be
+
+$$
+\mathbf{x}_{t+1} = \mathbf{x}_{t} + \mathbf{W}_{out}\mathbb{O}
+$$
 
 ## Theoretical Foundation
 
