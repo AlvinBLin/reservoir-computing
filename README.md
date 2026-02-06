@@ -20,6 +20,8 @@ Chaotic systems are characterised by their sensitivity to initial conditions. Re
   The <b>dashed linkage</b> represents Generalised Synchronisation—a functional relationship ensuring that the reservoir state is a unique "echo" of the physical system, effectively unfolding its topology for      linear prediction.</i>
 </p>
 
+For more information, please head to [network structure](#network-structure)
+
 ### Why Reservoir Computing?
 
 - **Efficient Readout Training:** Both paradigms use Ridge Regression, bypassing the gradient vanishing/exploding problems (BPTT) common in chaotic RNN training [1].
