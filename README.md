@@ -29,6 +29,10 @@ Chaotic systems are characterised by their sensitivity to initial conditions. Re
 ## How It Works
 The project implements two distinct architectures to "unfold" the system's state space, they have different structure for the networks.
 
+### Network Structure
+
+Even though both two methods are based on reservoir computing, they have distince structure of hidden layer in their networks, see Fig 2.
+
 ### Recurrance
 
 #### Classic ESN (Stochastic)
