@@ -4,6 +4,10 @@
 
 This project investigates the application of Reservoir Computing (RC) in modeling nonlinear dynamical systems. We contrast the "Classic" stochastic approach (ESN) with the "Next-Gen" deterministic approach (NVAR) to demonstrate how each captures chaotic attractors for autonomous forecasting.
 
+## Project Objective
+
+The primary goal of this project is to evaluate and compare two distinct Reservoir Computing frameworks in the task of autonomous time-series forecasting. We investigate how these methods "unfold" the hidden states of chaotic systems (like the Lorenz63 attractor) into a feature space that allows for long-term prediction without explicit knowledge of the underlying physical equations.
+
 ## Introduction
 
 Chaotic systems are characterised by their sensitivity to initial conditions. Reservoir Computing provides a computationally efficient alternative to traditional RNNs.
@@ -11,9 +15,9 @@ Chaotic systems are characterised by their sensitivity to initial conditions. Re
 <p align="center">
   <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif" width="60%" />
   <br>
-  Figure 1: Illustration of reservoir computing. Left: Lorenz attractor; right: constructed projected manifold;
-  <br>
-  deshed linkage: generalised synchronisation.
+  <b>Figure 1: The Principle of Generalised Synchronisation (GS).</b>
+  <i><b>Left:</b> The physical manifold (Lorenz Attractor). <b>Right:</b> The reconstructed manifold in the reservoir/delay space.
+  The <b>dashed linkage</b> represents Generalised Synchronisation—a functional relationship ensuring that the reservoir state is a unique "echo" of the physical system, effectively unfolding its topology for      linear prediction.</i>
 </p>
 
 ### Why Reservoir Computing?
