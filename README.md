@@ -37,7 +37,7 @@ Even though both two methods are based on reservoir computing, they have distinc
   <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/network_structure.png" width="60%" />
   <br>
   <b>Figure 2: ESN Structure and NextGen-RC Structure.</b>
-  <i><b>Top:</b> A traditional RC processes time-series data associated with a strange attractor (blue, middle left) using an artificial recurrent neural network. The forecasted strange attractor (red, middle right) is a linear weight of the reservoir states. <b>Bottom:</b> The NG-RC performs a forecast using a linear weight of time-delay states (two times shown here) of the time series data and nonlinear functionals of this data (quadratic functional shown here).</i>
+  <i><b>Top:</b> A traditional RC processes time-series data associated with a strange attractor (blue, middle left) using an artificial recurrent neural network. The forecasted strange attractor (red, middle right) is a linear weight of the reservoir states. <b>Bottom:</b> The NG-RC performs a forecast using a linear weight of time-delay states (two times shown here) of the time series data and nonlinear functionals of this data (quadratic functional shown here).</i> (Resource: Ref [2])
 </p>
 
 ### Recurrance
