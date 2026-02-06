@@ -34,11 +34,10 @@ The project implements two distinct architectures to "unfold" the system's state
 Even though both two methods are based on reservoir computing, they have distince structure of hidden layer in their networks, see Fig 2.
 
 <p align="center">
-  <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/lorenz_takens_reconstruction.gif" width="60%" />
+  <img src="https://github.com/AlvinBLin/reservoir-computing/blob/main/media/network_structure.png" width="60%" />
   <br>
-  <b>Figure 1: The Principle of Generalised Synchronisation (GS).</b>
-  <i><b>Left:</b> The physical manifold (Lorenz Attractor). <b>Right:</b> The reconstructed manifold in the reservoir/delay space.
-  The <b>dashed linkage</b> represents Generalised Synchronisation—a functional relationship ensuring that the reservoir state is a unique "echo" of the physical system, effectively unfolding its topology for      linear prediction.</i>
+  <b>Figure 2: ESN Structure and NextGen-RC Structure</b>
+  <i><b>Top:</b> A traditional RC processes time-series data associated with a strange attractor (blue, middle left) using an artificial recurrent neural network. The forecasted strange attractor (red, middle right) is a linear weight of the reservoir states. <b>Bottom:</b> The NG-RC performs a forecast using a linear weight of time-delay states (two times shown here) of the time series data and nonlinear functionals of this data (quadratic functional shown here).</i>
 </p>
 
 ### Recurrance
