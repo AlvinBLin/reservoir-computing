@@ -1,4 +1,4 @@
-<h1 align="center">Reservoir Computing for Chaotic Dynamics</h1>
+<h1 align="center">Reservoir Computing: A Modern Approach To Dynamical System Forecasting</h1>
 <div align="center"><i>Comparing Stochastic Echo State Networks and Deterministic NVAR Frameworks.</i></div>
 <br>
 
